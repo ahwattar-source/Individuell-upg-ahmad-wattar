@@ -43,7 +43,11 @@ while val_1 != 4:
     print("3.Visa användare")
     print("4. Avsluta")
 
-    val_1 = int(input())
+    try:
+        val_1 = int(input("Välj: "))
+    except ValueError:
+        print("Du måste skriva en siffra. Försök igen.")
+        continue
 
     if val_1 == 1:
         print ("Logga in")
@@ -66,7 +70,11 @@ while val_1 != 4:
                 print("3.Ändra lösenord")
                 print("4.Logga ut")
                 
-                val_2 = int(input())
+                try:
+                    val_2 = int(input("Välj: "))
+                except ValueError:
+                    print("Du måste skriva en siffra. Försök igen.")
+                    continue
 
                 if val_2 == 1:
                     
@@ -77,12 +85,22 @@ while val_1 != 4:
 
                 elif val_2 == 2:
 
-                    #def spara_beskrivning(name, lastname, age):
                     user.name = input("Vad är ditt namn?: ")
+                    while user.name == "":
+                        print("Du måste skriva in ett namn. Försök igen.")
+                        user.name = input("Vad är ditt namn?: ")
+
                     user.lastname = input("Vad är ditt efternamn?: ")
-                    user.age = int(input("Hur gammal är du?: "))
-                    #spara_beskrivning = Inloggning(name, lastname, age)
-                    #beskrivning_lista.append(spara_beskrivning)
+                    while user.lastname == "":
+                        print("Du måste skriva in ett efternamn. Försök igen.")
+                        user.lastname = input("Vad är ditt efternamn?: ")
+
+                    while True:
+                        try:
+                            user.age = int(input("Hur gammal är du?: "))
+                            break
+                        except ValueError:
+                            print("Du måste skriva din ålder med siffror. Försök igen.")
 
                 elif val_2 == 3:
                     
@@ -100,7 +118,12 @@ while val_1 != 4:
 
     elif val_1 == 2:
         print("Skapa användare")
+        
         username = input("Skriv in ditt användarnamn: ")
+        while username == "":
+            print("Användarnamnet får inte vara tomt. Försök igen.")
+            username = input("Skriv in ditt användarnamn: ")
+            
         password = input("Skriv in ditt lösenord: ")
         
         if kontrollera_lösenord(password) == "rätt":
